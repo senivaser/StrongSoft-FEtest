@@ -31,7 +31,7 @@
   margin-left: 10px;
   margin-right: 10px;
   background: lightblue;
-  transition: transform 0.5s ease-out;
+  transition: transform 0.5s ease-out, opacity 0.3s ease-in;
 
 }
 

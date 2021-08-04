@@ -3,17 +3,22 @@ import React from 'react'
 const Card = ({
   card, cardEl, visibleCount, endTransitionMethod
 }) => {
-  const { pos } = cardEl
+  const { id, pos } = cardEl
   const {img, name, surname, dateOfBirth} = card
+  
   return (
     <div 
-      id = {card.id}
+      id = {id}
       className={`card`}
-      style={{transform: `translateX(calc(${
-        (pos > visibleCount)? visibleCount+1:
-        (pos < -visibleCount)? -visibleCount-1:
-        pos
-      }*75px))`}}
+      style={{
+        transform: `translateX(calc(${
+          (pos > visibleCount)? visibleCount+1:
+          (pos < -visibleCount)? -visibleCount-1:
+          pos
+          }*75px))`,
+        opacity: `${(pos > visibleCount || pos < -visibleCount)? '0': '1'}`
+      }}
+
       onTransitionEnd = {(pos > visibleCount || pos < -visibleCount) ? endTransitionMethod: () => {}}
     >
       <div className="card-img-block">

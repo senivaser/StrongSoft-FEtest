@@ -65,8 +65,9 @@ const CardScroller = ({cards, defaultSelectedId, defaultVisibleCount}) => {
     }
   }, [nowMoving])
 
-  const placeCards = () => {
-    const newCardStack = [...cardStack.filter(card => (card.pos > -visibleCount && card.pos < visibleCount))]
+  const placeCards = (event) => {
+
+    const newCardStack = [...cardStack.filter(cardEl => (cardEl.id !== event.target.id))]
     setCardStack(newCardStack)
   }
 
