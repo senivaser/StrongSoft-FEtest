@@ -1,0 +1,56 @@
+*,
+*::before,
+*::after,
+:root {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@import 'https://fonts.googleapis.com/css?family=Overlock:400,400i,700|Oleo+Script';
+
+html, body {
+    height: 100%;
+}
+
+body {
+    color: #252934;
+    background: #fafafa;
+    font-size: 10px;
+    font-family: 'Overlock', Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+a,
+a:visited {
+    color: #252934;
+    font-size: 1.4rem;
+    text-decoration: none;
+    transition: 200ms;
+}
+
+a:hover,
+a:active {
+    color: #f300b4;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+button {
+    outline: none;
+    font-size: 25px;
+    padding: 10px;
+    border: 1px solid #f300b4;
+    border-radius: 5px;
+    background-color: transparent;
+    color: white
+}
+
+button:hover {
+    background-color: #f300b4;
+}

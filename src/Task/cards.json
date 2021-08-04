@@ -1,0 +1,44 @@
+[
+  {
+    "id": "5",
+    "name": "Ivan",
+    "surname": "Ivanov",
+    "dateOfBirth": "1992-01-01"
+  },
+  {
+    "id": "11",
+    "name": "Petr",
+    "surname": "Petrov",
+    "dateOfBirth": "1993-02-02"
+  },
+  { 
+    "id": "17",
+    "name": "Vladimir",
+    "surname": "Vladimirov",
+    "dateOfBirth": "1994-03-03"
+  },
+  {
+    "id": "19",
+    "name": "Vasilii",
+    "surname": "Vasiliev",
+    "dateOfBirth": "1995-04-04"
+  },
+  {
+    "id": "24",
+    "name": "Igor",
+    "surname": "Vasiliev",
+    "dateOfBirth": "1995-04-04"
+  },
+  {
+    "id": "35",
+    "name": "Alexey",
+    "surname": "Vasiliev",
+    "dateOfBirth": "1995-04-04"
+  },
+  {
+    "id": "77",
+    "name": "Egor",
+    "surname": "Vasiliev",
+    "dateOfBirth": "1995-04-04"
+  }
+]
