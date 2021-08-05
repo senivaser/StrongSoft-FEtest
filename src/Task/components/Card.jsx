@@ -11,11 +11,9 @@ const Card = ({
     'right': +visibleCount+1
   }
 
-  console.log(appearence)
   const [bufferDistance, setBufferDistance] = useState(appearanceObject[appearence] || 0)
   const makeAppeared = () => { 
       setBufferDistance(0)
-    console.log('makeApeared')
   }
 
   return (

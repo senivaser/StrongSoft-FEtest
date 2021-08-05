@@ -78,7 +78,6 @@ const CardScroller = ({cards, defaultSelectedId, defaultVisibleCount}) => {
   const moveHandler = (event) => {
    
     const direction = event.target.id
-    console.log('moveHandler', direction)
 
     const params = {
       "left": {
@@ -108,7 +107,6 @@ const CardScroller = ({cards, defaultSelectedId, defaultVisibleCount}) => {
       newEdgeDistance, newEdgeDeltaPos,
       newEdgeMovement
     } = dirParams
-    console.log('movePreparation', direction)
 
     const oldEdge = cardStack[oldEdgeIndex];
     
@@ -121,8 +119,6 @@ const CardScroller = ({cards, defaultSelectedId, defaultVisibleCount}) => {
       pos: oldEdge.pos + newEdgeDeltaPos,
       appearence: counterDirection
     }
-
-    console.log({oldPos: oldEdge.pos, newEdgeDeltaPos, newStackEdgePos: newStackEdge.pos})
 
     if (direction === 'left') {
       newCardStack.push(newStackEdge)
@@ -142,10 +138,8 @@ const CardScroller = ({cards, defaultSelectedId, defaultVisibleCount}) => {
 
   const inputVisibleCount = (event) => {
     const value = event.target.value
-    console.log( event.target.value)
     stateVisibleCount(value)    
   }
-
      
   return (
     <div className="scroller-block">
