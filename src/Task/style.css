@@ -31,8 +31,26 @@
   margin-left: 10px;
   margin-right: 10px;
   background: lightblue;
-  transition: transform 0.5s ease-out, opacity 0.3s ease-in;
+  transition: transform 1s ease-out 0.05s, opacity 0.5s ease-in 0.1s;
+  animation: plug ease-out 0.03s;
+}
 
+@keyframes plug {
+  from {
+
+  }
+  to {
+
+  }
+}
+
+@keyframes disappear {
+  from {
+      transform: rotateY(180deg);
+  }
+  to {
+      transform: rotateY(0deg);
+  }
 }
 
 .buttons {
@@ -40,8 +58,19 @@
   align-items: center;
   display: flex;
   justify-content: center;
+  left: calc(50% - 20px);
+  bottom: -150px;
+  padding: 8px;
+
+}
+
+.visible-count {
+  position: absolute;
+  align-items: center;
+  display: flex;
+  justify-content: center;
   left: 50%;
-  top: 250px;
+  top: -100px;
   padding: 8px;
 
 }

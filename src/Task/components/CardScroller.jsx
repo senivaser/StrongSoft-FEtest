@@ -14,12 +14,12 @@ const getDistantElement = (arr, startElId, distance) => {
       (rawDistantIndex >= length) ?
         rawDistantIndex - length:
         rawDistantIndex
-    // console.log({rawDistantIndex, distantIndex, startIndex, length})
+
     return arr[distantIndex] 
     
   } catch (err) {
     console.log(err)
-    return null
+    return arr.find(el => el.id === startElId)
   }
 
 }
@@ -52,6 +52,7 @@ const CardScroller = ({cards, defaultSelectedId, defaultVisibleCount}) => {
 
   const [visibleCount, stateVisibleCount] = useState(defaultVisibleCount)
   const [selectedId, setSelectedId] = useState(defaultSelectedId)
+
   const [cardStack, setCardStack] = useState(generateCardStack(cards, defaultSelectedId, defaultVisibleCount))
   const [nowMoving, setNowMoving] = useState(0)
 
@@ -64,9 +65,12 @@ const CardScroller = ({cards, defaultSelectedId, defaultVisibleCount}) => {
       setNowMoving(0)
     }
   }, [nowMoving])
+  
+  useEffect(() => {
+    setCardStack(generateCardStack(cards, selectedId, visibleCount))
+  }, [visibleCount])
 
-  const placeCards = (event) => {
-
+  const removeOutcomingCards = (event) => {
     const newCardStack = [...cardStack.filter(cardEl => (cardEl.id !== event.target.id))]
     setCardStack(newCardStack)
   }
@@ -75,9 +79,11 @@ const CardScroller = ({cards, defaultSelectedId, defaultVisibleCount}) => {
    
     const direction = event.target.id
     console.log('moveHandler', direction)
+
     const params = {
       "left": {
         direction: 'left',
+        counterDirection: 'right',
         oldEdgeIndex: cardStack.length - 1,
         newEdgeDistance: 1,
         newEdgeDeltaPos: 2,
@@ -85,6 +91,7 @@ const CardScroller = ({cards, defaultSelectedId, defaultVisibleCount}) => {
       },
       "right": {
         direction: 'right',
+        counterDirection: 'left',
         oldEdgeIndex: 0,
         newEdgeDistance: -1,
         newEdgeDeltaPos: -2,
@@ -95,23 +102,24 @@ const CardScroller = ({cards, defaultSelectedId, defaultVisibleCount}) => {
   }
 
   const movePreparation = (dirParams) => {
-    console.log('movePreparation', dirParams)
+
     const {
-      direction, oldEdgeIndex,
+      direction, counterDirection, oldEdgeIndex,
       newEdgeDistance, newEdgeDeltaPos,
       newEdgeMovement
     } = dirParams
+    console.log('movePreparation', direction)
 
     const oldEdge = cardStack[oldEdgeIndex];
     
     const newCardStack = [...cardStack]    
     
     const newEdge = getDistantElement(cards, oldEdge.id, newEdgeDistance)
-    console.log({cards, oldEdge, newEdge, oldEdgeIndex, newEdgeDistance})
 
     const newStackEdge = {
       id: newEdge.id,
       pos: oldEdge.pos + newEdgeDeltaPos,
+      appearence: counterDirection
     }
 
     console.log({oldPos: oldEdge.pos, newEdgeDeltaPos, newStackEdgePos: newStackEdge.pos})
@@ -132,6 +140,12 @@ const CardScroller = ({cards, defaultSelectedId, defaultVisibleCount}) => {
     
   }
 
+  const inputVisibleCount = (event) => {
+    const value = event.target.value
+    console.log( event.target.value)
+    stateVisibleCount(value)    
+  }
+
      
   return (
     <div className="scroller-block">
@@ -146,7 +160,7 @@ const CardScroller = ({cards, defaultSelectedId, defaultVisibleCount}) => {
               card = {card}
               visibleCount = {visibleCount}
               cardEl = {cardEl}
-              endTransitionMethod = {placeCards}
+              endTransitionMethod = {removeOutcomingCards}
             ></Card>
           )
         })}
@@ -154,6 +168,10 @@ const CardScroller = ({cards, defaultSelectedId, defaultVisibleCount}) => {
           <div id = "left" className="arrow left" onClick={moveHandler}></div>
           <div id = "right" className="arrow right" onClick={moveHandler}></div>           
         </div> 
+        <div className="visible-count">
+          <label>Количество элементов</label>
+          <input id="visible-count" type="number" onInput={inputVisibleCount}/>
+        </div>
 
           
       </div> 
